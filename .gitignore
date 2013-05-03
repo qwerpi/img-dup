@@ -4,3 +4,12 @@
 *.jar
 *.war
 *.ear
+
+# Image Files #
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Files for Internal Use #
+*.dat
