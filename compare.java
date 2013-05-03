@@ -14,7 +14,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
-
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 import javax.imageio.ImageIO;
 
 public class compare {
@@ -36,9 +37,9 @@ public class compare {
 		ObjectInputStream ois = null;
 		try {
 			if (strategy == Image.SCALE_FAST) {
-				ois = new ObjectInputStream(new FileInputStream("fast.dat"));
+				ois = new ObjectInputStream(new GZIPInputStream(new FileInputStream("fast.dat")));
 			} else {
-				ois = new ObjectInputStream(new FileInputStream("smooth.dat"));
+				ois = new ObjectInputStream(new GZIPInputStream(new FileInputStream("smooth.dat")));
 			}
 		} catch (FileNotFoundException ex) {
 			System.err.println("Database has not yet been created");
@@ -122,7 +123,7 @@ public class compare {
 		}
 		if (hasNewData) {
 			System.out.println("Writing new data to " + (strategy == Image.SCALE_FAST ? "fast.dat" : "smooth.dat"));
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(strategy == Image.SCALE_FAST ? "fast.dat" : "smooth.dat"));
+			ObjectOutputStream oos = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(strategy == Image.SCALE_FAST ? "fast.dat" : "smooth.dat")));
 			oos.writeObject(data);
 		}
 	}
