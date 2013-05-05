@@ -47,6 +47,7 @@ public class compare {
 		
 		if (ois != null) {
 			data = (HashMap<String, int[][]>) ois.readObject();
+			ois.close();
 		}
 		
 		if (data == null) {
@@ -125,6 +126,7 @@ public class compare {
 			System.out.println("Writing new data to " + (strategy == Image.SCALE_FAST ? "fast.dat" : "smooth.dat"));
 			ObjectOutputStream oos = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(strategy == Image.SCALE_FAST ? "fast.dat" : "smooth.dat")));
 			oos.writeObject(data);
+			oos.close();
 		}
 	}
 	
